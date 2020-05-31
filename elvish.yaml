@@ -1,0 +1,59 @@
+filetype: elvish
+
+detect:
+    filename: "\\.elv$"
+
+rules:
+    # Conditionals and control flow
+    - special: "\\b(all|assoc|bool|cd|chr|constantly|count|dir-history)\\b"
+    - special: "\\b(dissoc|drop|each|eawk|echo|eq|exec|exit|explode|external)\\b"
+    - special: "\\b(fail|fclose|fopen|from-json|from-lines|-gc|get-env|has-env|has-external)\\b"
+    - special: "\\b(has-key|has-prefix|has-suffix|has-value|-ifaddrs|is|joins|keys)\\b"
+    - special: "\\b(kind-of|-log|make-map|nop|not|not-eq|one|only-bytes|only-values)\\b"
+    - special: "\\b(ord|path-|peach|pipe|pprint|prclose|print|put|pwclose|rand)\\b"
+    - special: "\\b(randint|range|read-line|read-upto|repeat|replaces|repr|resolve|run-parallel)\\b"
+    - special: "\\b(search-external|set-env|slurp|-source|splits|src|-stack|styled)\\b"
+    - special: "\\b(styled-segment|take|tilde-abbr||time|-time|tilde-abbr|to-json|to-lines|to-string)\\b"
+    - special: "\\b(unset-env|wcswidth)\\b"
+    - statement: "\\b(elif|else|for|if|while|try|return|except)\\b\\s+"
+    - preproc: "\\b(fn)\\b"
+    - symbol.operator: "([.:;,+*|=!\\%]|<|>|/|-|&)"
+    
+      # Types
+    - type: "(@)"
+    - type: "(\\$)"
+    - type.keyword: "\\b(struct)\\b"
+    - constant.bool: "\\b(true|false|nil)\\b"
+
+      # Brackets
+    - symbol.brackets: "(\\{|\\})"
+    - symbol.brackets: "(\\(|\\))"
+    - symbol.brackets: "(\\[|\\])"
+
+      # Numbers and strings
+    - constant.number: "\\b([0-9]+|0x[0-9a-fA-F]*)\\b|'.'"
+
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+             - constant.specialChar: "\\\\."
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+             - constant.specialChar: "\\\\."
+             
+    - constant.string:
+        start: "`"
+        end: "`"
+        rules: []
+
+    - comment:
+        start: "#"
+        end: "$"
+        rules:
+            - todo: "(TODO|XXX|FIXME):?"

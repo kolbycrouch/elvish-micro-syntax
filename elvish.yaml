@@ -33,24 +33,8 @@ rules:
       # Numbers and strings
     - constant.number: "\\b([0-9]+|0x[0-9a-fA-F]*)\\b|'.'"
 
-    - constant.string:
-        start: "\""
-        end: "\""
-        skip: "\\\\."
-        rules:
-             - constant.specialChar: "\\\\."
-
-    - constant.string:
-        start: "'"
-        end: "'"
-        skip: "\\\\."
-        rules:
-             - constant.specialChar: "\\\\."
-             
-    - constant.string:
-        start: "`"
-        end: "`"
-        rules: []
+      # Quoted strings
+    - constant.string: "\".*\"|\'.*\'|`.*`"	
 
     - comment:
         start: "#"

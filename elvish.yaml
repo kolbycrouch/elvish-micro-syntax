@@ -16,7 +16,7 @@ rules:
     - special: "\\b(styled-segment|take|tilde-abbr||time|-time|tilde-abbr|to-json|to-lines|to-string)\\b"
     - special: "\\b(unset-env|wcswidth)\\b"
     - statement: "\\b(elif|else|for|if|while|try|return|except)\\b\\s+"
-    - preproc: "\\b(fn)\\b"
+    - preproc: "\\b(fn|use)\\b"
     - symbol.operator: "([.:;,+*|=!\\%]|<|>|/|-|&)"
     
       # Types
